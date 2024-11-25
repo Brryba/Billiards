@@ -5,21 +5,21 @@
 #include <GL/freeglut.h>
 #include "Draw.h"
 #include "Constants.h"
+#include "Balls.h"
 
 void display();
 void timer(int);
 
 float theta = 0.0f;  // Initialize theta
-const int SCREEN_WIDTH = 1920;
-const int SCREEN_HEIGHT = 1080;
 
 void initializeDisplay(int args, char **argv) {
     glutInit(&args, argv);
     glutInitDisplayMode(GLUT_RGB);
     glutInitWindowPosition(0, 0);
-    //glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
-    glutInitWindowSize(1280, 720);
+    glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    //glutInitWindowSize(1280, 720);
     glutCreateWindow("Billiards");
+    createBalls();
     glutFullScreen();
 
     // Register what to draw
@@ -45,14 +45,13 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT);
 
     glRotatef(theta, 0.0f, 0.0f, 0.0f);
-    drawBall(1000, 430);
-    // Increment theta for animation
-    //theta += 0.01f;
+    moveBalls();
+    drawBalls();
 
     glFlush();
 }
 
 void timer(int) {
     glutPostRedisplay();
-    glutTimerFunc(10, timer, 0);  // FPS настроить как-то можно
+    glutTimerFunc(7, timer, 0);  // FPS настроить как-то можно
 }

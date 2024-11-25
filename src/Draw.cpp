@@ -2,6 +2,7 @@
 #include <cmath>
 #include "Draw.h"
 #include "Constants.h"
+#include "Balls.h"
 
 void drawBall(float x, float y) {
     const int POINTS_NUM = 52;
@@ -17,4 +18,10 @@ void drawBall(float x, float y) {
     }
 
     glEnd();
+}
+
+void drawBalls() {
+    for (int i = 0; i < ballsLen; i++) {
+        drawBall(balls[i].coordX, balls[i].coordY);
+    }
 }
