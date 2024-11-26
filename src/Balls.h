@@ -3,10 +3,12 @@
 
 #include <cmath>
 #include <valarray>
+#include "Constants.h"
 
 using namespace ::std;
 
 struct Ball {
+    Color color;
     float coordX;
     float coordY;
     float speedX;
@@ -27,6 +29,7 @@ struct Ball {
 
 extern Ball* balls;
 extern int ballsLen;
+extern Ball* whiteBall;
 
 void createBalls();
 void moveBalls();

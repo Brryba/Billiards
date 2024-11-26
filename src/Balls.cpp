@@ -4,19 +4,16 @@ using namespace ::std;
 
 int ballsLen = 0;
 Ball *balls = nullptr;
+Ball* whiteBall = nullptr;
 
 void createBalls() {
-    ballsLen = 2;
+    ballsLen = 1;
     balls = new Ball[ballsLen];
     for (int i = 0; i < ballsLen; i++) {
-        balls[i].coordX = 1300;
-        balls[i].coordY = 490;
+        balls[i].coordX = 960;
+        balls[i].coordY = 500;
     }
-    balls[1].coordX = 823;
-    balls[1].coordY = 265;
-    balls[1].setSpeed(-2, 2);
-    balls[0].setSpeed(2, 2);
-    //huyniu delau
+    whiteBall = &balls[0];
 }
 
 float countSpeed(float speed, float acceleration) {
@@ -25,7 +22,6 @@ float countSpeed(float speed, float acceleration) {
 }
 
 void moveBalls() {
-    const float ACCELERATION = 0.008;
     for (int i = 0; i < ballsLen; i++) {
         balls[i].coordX = balls[i].coordX + balls[i].speedX;
         balls[i].coordY = balls[i].coordY + balls[i].speedY;
