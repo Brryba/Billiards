@@ -9,7 +9,8 @@ bool checkPocketsCollisions(Ball *ball) {
         float dx = ball->coordX - j[0];
         float dy = balls->coordY - j[1];
         if (sqrt(dx * dx + dy * dy) < POCKET_RADIUS) {
-            ball->coordX = 100;
+            ball->coordX = 500;
+            ball->coordY = 500;
             ball->setSpeed(0, 0);
             return true;
         }

@@ -1,5 +1,6 @@
 #include "Balls.h"
 #include "Collisions.h"
+#include "GameState.h"
 
 using namespace ::std;
 
@@ -24,6 +25,7 @@ float countSpeed(float speed, float acceleration) {
 
 void moveBalls() {
     collisionsCheck();
+    state = WAIT;
     for (int i = 0; i < ballsLen; i++) {
         balls[i].coordX = balls[i].coordX + balls[i].speedX;
         balls[i].coordY = balls[i].coordY + balls[i].speedY;
@@ -31,5 +33,8 @@ void moveBalls() {
                                      sin(balls[i].angle) * ACCELERATION);
         balls[i].speedY = countSpeed(balls[i].speedY,
                                      cos(balls[i].angle) * ACCELERATION);
+        if (balls[i].speedX != 0 || balls[i].speedY != 0) {
+            state = MOVE;
+        }
     }
 }

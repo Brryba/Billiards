@@ -51,15 +51,36 @@ void drawStrikeLine(int len) {
     glBegin(GL_LINE_LOOP);
     glVertex2f(whiteBall->coordX, whiteBall->coordY);
     if (whiteBall->coordX < mouseX) {
-        glVertex2f(0, whiteBall->coordY +
-                      whiteBall->coordX * (whiteBall->coordY - mouseY) / (mouseX - whiteBall->coordX));
+        glVertex2f(WIDTH_START - BROWN_BORDER_LEN, whiteBall->coordY +
+                (whiteBall->coordX - WIDTH_START + BROWN_BORDER_LEN)
+                * (whiteBall->coordY - mouseY) / (mouseX - whiteBall->coordX));
     } else if (whiteBall->coordX != mouseX) {
-        glVertex2f(APP_WIDTH, whiteBall->coordY +
-                (APP_WIDTH - whiteBall->coordX) * (mouseY - whiteBall->coordY) / (mouseX - whiteBall->coordX));
+        glVertex2f(WIDTH_FINISH + BROWN_BORDER_LEN, whiteBall->coordY +
+                (WIDTH_FINISH + BROWN_BORDER_LEN - whiteBall->coordX)
+                * (mouseY - whiteBall->coordY) / (mouseX - whiteBall->coordX));
     } else if (whiteBall->coordY > mouseY) {
         glVertex2f(mouseX, APP_HEIGHT);
     } else {
         glVertex2f(mouseX, 0);
     }
     glEnd();
+}
+
+void drawSquare(int width_start, int width_finish, int height_start, int height_finish) {
+    glBegin(GL_POLYGON);
+    glVertex2i(width_start, height_start);
+    glVertex2i(width_start, height_finish);
+    glVertex2i(width_finish, height_finish);
+    glVertex2i(width_finish, height_start);
+    glEnd();
+
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void drawBackGround() {
+    glColor3f(0.6, 0.9, 0.9);
+    drawSquare(WIDTH_START - BROWN_BORDER_LEN, WIDTH_FINISH + BROWN_BORDER_LEN,
+               0, HEIGHT_START - BROWN_BORDER_LEN);
+    drawSquare(WIDTH_START - BROWN_BORDER_LEN, WIDTH_FINISH + BROWN_BORDER_LEN,
+               HEIGHT_FINISH + BROWN_BORDER_LEN, APP_HEIGHT);
 }

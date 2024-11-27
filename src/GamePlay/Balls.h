@@ -23,7 +23,7 @@ struct Ball {
     void setSpeed(float x, float y) {
         this->speedX = x;
         this->speedY = y;
-        this->angle = atan(abs(x) / abs(y));
+        this->angle = y == 0 ? 0: atan(abs(x) / abs(y));
     }
 };
 
