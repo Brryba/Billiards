@@ -54,7 +54,6 @@ void mouseActiveMove(int x, int y) {
 
 void display() {
     glClearColor(0.6, 0.9, 0.9, 0.0f);
-    //glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 
     moveBalls();

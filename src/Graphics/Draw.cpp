@@ -54,8 +54,8 @@ void drawStrikeLine(int len) {
         glVertex2f(0, whiteBall->coordY +
                       whiteBall->coordX * (whiteBall->coordY - mouseY) / (mouseX - whiteBall->coordX));
     } else if (whiteBall->coordX != mouseX) {
-        glVertex2f(APP_WIDTH, whiteBall->coordY -
-                              whiteBall->coordX * (whiteBall->coordY - mouseY) / (mouseX - whiteBall->coordX));
+        glVertex2f(APP_WIDTH, whiteBall->coordY +
+                (APP_WIDTH - whiteBall->coordX) * (mouseY - whiteBall->coordY) / (mouseX - whiteBall->coordX));
     } else if (whiteBall->coordY > mouseY) {
         glVertex2f(mouseX, APP_HEIGHT);
     } else {

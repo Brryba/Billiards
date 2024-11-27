@@ -11,7 +11,7 @@ void createBalls() {
     ballsLen = 1;
     balls = new Ball[ballsLen];
     for (int i = 0; i < ballsLen; i++) {
-        balls[i].coordX = 960;
+        balls[i].coordX = 400;
         balls[i].coordY = 500;
     }
     whiteBall = &balls[0];
