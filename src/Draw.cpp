@@ -7,7 +7,7 @@
 #include "GL/glut.h"
 #include "Handlers.h"
 
-void drawBall(float x, float y) {
+void drawCircle(float x, float y, float size) {
     const int POINTS_NUM = 52;
 
     glBegin(GL_TRIANGLE_FAN);
@@ -15,12 +15,16 @@ void drawBall(float x, float y) {
 
     for (int i = 0; i <= POINTS_NUM; i++) {
         float angle = M_PI * 2 * (float) i / POINTS_NUM;
-        float dx = BALL_SIZE * cosf(angle);
-        float dy = BALL_SIZE * sinf(angle);
+        float dx = size * cosf(angle);
+        float dy = size * sinf(angle);
         glVertex2f(x + dx, y + dy);
     }
 
     glEnd();
+}
+
+void drawBall(float x, float y) {
+    drawCircle(x, y, BALL_RADIUS);
 }
 
 void drawBalls() {

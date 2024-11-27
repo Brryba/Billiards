@@ -3,6 +3,7 @@
 #include "Draw.h"
 #include "Constants.h"
 #include "Balls.h"
+#include "DrawTable.h"
 
 int mouseX = 0, mouseY = 0;
 int activeMouseStartX = 0, activeMouseStartY = 0;
@@ -52,10 +53,12 @@ void mouseActiveMove(int x, int y) {
 }
 
 void display() {
-    glClearColor(0.7f, 1.0f, 0.7f, 0.0f);
+    glClearColor(0.6, 0.9, 0.9, 0.0f);
+    //glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 
     moveBalls();
+    drawTable();
     drawStrikeLine(len);
     drawBalls();
 

@@ -1,4 +1,5 @@
 #include "Balls.h"
+#include "Collisions.h"
 
 using namespace ::std;
 
@@ -22,6 +23,7 @@ float countSpeed(float speed, float acceleration) {
 }
 
 void moveBalls() {
+    collisionsCheck();
     for (int i = 0; i < ballsLen; i++) {
         balls[i].coordX = balls[i].coordX + balls[i].speedX;
         balls[i].coordY = balls[i].coordY + balls[i].speedY;

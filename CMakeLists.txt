@@ -10,7 +10,11 @@ add_executable(Billiards src/main.cpp
         src/Constants.h
         src/Balls.cpp
         src/Handlers.h
-        src/Handlers.cpp)
+        src/Handlers.cpp
+        src/DrawTable.cpp
+        src/DrawTable.h
+        src/Collisions.h
+        src/Collisions.cpp)
 
 target_link_libraries(Billiards ${OPENGL_LIBRARIES})
 target_link_libraries(Billiards -lopengl32 -g -lfreeglut)
