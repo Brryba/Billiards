@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Balls.h"
-#include "Constants.h"
+#include "../Main/Constants.h"
 
 const float WASTE_COEF = 0.8;
 

@@ -1,9 +1,9 @@
 #include <iostream>
 #include "GL/glut.h"
-#include "Draw.h"
-#include "Constants.h"
-#include "Balls.h"
-#include "DrawTable.h"
+#include "../Graphics/Draw.h"
+#include "../Main/Constants.h"
+#include "../GamePlay/Balls.h"
+#include "../Graphics/DrawTable.h"
 
 int mouseX = 0, mouseY = 0;
 int activeMouseStartX = 0, activeMouseStartY = 0;

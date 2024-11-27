@@ -2,10 +2,10 @@
 #include <cmath>
 #include <iostream>
 #include "Draw.h"
-#include "Constants.h"
-#include "Balls.h"
+#include "../Main/Constants.h"
+#include "../GamePlay/Balls.h"
 #include "GL/glut.h"
-#include "Handlers.h"
+#include "../Controls/Handlers.h"
 
 void drawCircle(float x, float y, float size) {
     const int POINTS_NUM = 52;

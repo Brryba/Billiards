@@ -1,6 +1,6 @@
 #include "GL/glut.h"
 #include "Draw.h"
-#include "Constants.h"
+#include "../Main/Constants.h"
 
 const int BROWN_BORDER_LEN = 50;
 

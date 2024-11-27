@@ -4,10 +4,10 @@
 #include <GL/glut.h>
 #include <GL/freeglut.h>
 #include <iostream>
-#include "Draw.h"
+#include "../Graphics/Draw.h"
 #include "Constants.h"
-#include "Balls.h"
-#include "Handlers.h"
+#include "../GamePlay/Balls.h"
+#include "../Controls/Handlers.h"
 
 void timer(int) {
     glutPostRedisplay();

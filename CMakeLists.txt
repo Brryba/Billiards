@@ -3,18 +3,18 @@ project(Billiards)
 
 set(CMAKE_CXX_STANDARD 26)
 
-add_executable(Billiards src/main.cpp
-        src/main.cpp
-        src/Draw.cpp
-        src/Draw.h
-        src/Constants.h
-        src/Balls.cpp
-        src/Handlers.h
-        src/Handlers.cpp
-        src/DrawTable.cpp
-        src/DrawTable.h
-        src/Collisions.h
-        src/Collisions.cpp)
+add_executable(Billiards src/Main/main.cpp
+        src/Main/main.cpp
+        src/Graphics/Draw.cpp
+        src/Graphics/Draw.h
+        src/Main/Constants.h
+        src/GamePlay/Balls.cpp
+        src/Controls/Handlers.h
+        src/Controls/Handlers.cpp
+        src/Graphics/DrawTable.cpp
+        src/Graphics/DrawTable.h
+        src/GamePlay/Collisions.h
+        src/GamePlay/Collisions.cpp)
 
 target_link_libraries(Billiards ${OPENGL_LIBRARIES})
 target_link_libraries(Billiards -lopengl32 -g -lfreeglut)
