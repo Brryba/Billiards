@@ -9,12 +9,21 @@ Ball *balls = nullptr;
 Ball* whiteBall = nullptr;
 
 void createBalls() {
-    ballsLen = 1;
+    ballsLen = 4;
     balls = new Ball[ballsLen];
     for (int i = 0; i < ballsLen; i++) {
-        balls[i].coordX = 400;
-        balls[i].coordY = 500;
+        //balls[i].coordX = 400;
+        //balls[i].coordY = 500;
     }
+    balls[0].coordX = 1500;
+    balls[0].coordY = 600;
+    balls[1].coordX = 1500;
+    balls[1].coordY = 900;
+    balls[2].coordX = 1500;
+    balls[2].coordY = 924;
+    balls[3].coordX = 1500;
+    balls[3].coordY = 948;
+    //balls[1].setSpeed(1.3, 1.3);
     whiteBall = &balls[0];
 }
 
@@ -25,7 +34,7 @@ float countSpeed(float speed, float acceleration) {
 
 void moveBalls() {
     collisionsCheck();
-    state = WAIT;
+    gameState = WAIT;
     for (int i = 0; i < ballsLen; i++) {
         balls[i].coordX = balls[i].coordX + balls[i].speedX;
         balls[i].coordY = balls[i].coordY + balls[i].speedY;
@@ -34,7 +43,7 @@ void moveBalls() {
         balls[i].speedY = countSpeed(balls[i].speedY,
                                      cos(balls[i].angle) * ACCELERATION);
         if (balls[i].speedX != 0 || balls[i].speedY != 0) {
-            state = MOVE;
+            gameState = MOVE;
         }
     }
 }

@@ -1,3 +1,3 @@
 #include "GameState.h"
 
-States state = WAIT;
+States gameState = WAIT;

@@ -4,7 +4,7 @@
 #include "../Main/Constants.h"
 #include "../GamePlay/Balls.h"
 #include "../Graphics/DrawTable.h"
-#include "../GamePlay/GameState.h."
+#include "../GamePlay/GameState.h"
 
 int mouseX = 0, mouseY = 0;
 int activeMouseStartX = 0, activeMouseStartY = 0;
@@ -25,25 +25,27 @@ void mousePassiveMove(int x, int y) {
 }
 
 void mouseActivePress(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        activeMouseStartX = x;
-        activeMouseStartY = y;
-    } else if (button == GLUT_LEFT_BUTTON) {
-        if (len > MAX_LEN) {
-            len = MAX_LEN;
-        }
-        if (len > MIN_LEN) {
-            float angle = atan((toAppWidth(activeMouseStartX) - whiteBall->coordX) /
-                               (toAppHeight(activeMouseStartY) - whiteBall->coordY));
-            float speed = len * MAX_SPEED / MAX_LEN;
-            if (toAppHeight(activeMouseStartY) < whiteBall->coordY) {
-                whiteBall->setSpeed(speed * sin(angle), speed * cos(angle));
-            } else {
-                whiteBall->setSpeed(-1 * speed * sin(angle), -1 * speed * cos(angle));
+    if (gameState == WAIT) {
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            activeMouseStartX = x;
+            activeMouseStartY = y;
+        } else if (button == GLUT_LEFT_BUTTON) {
+            if (len > MAX_LEN) {
+                len = MAX_LEN;
             }
-        }
+            if (len > MIN_LEN) {
+                float angle = atan((toAppWidth(activeMouseStartX) - whiteBall->coordX) /
+                                   (toAppHeight(activeMouseStartY) - whiteBall->coordY));
+                float speed = len * MAX_SPEED / MAX_LEN;
+                if (toAppHeight(activeMouseStartY) < whiteBall->coordY) {
+                    whiteBall->setSpeed(speed * sin(angle), speed * cos(angle));
+                } else {
+                    whiteBall->setSpeed(-1 * speed * sin(angle), -1 * speed * cos(angle));
+                }
+            }
 
-        len = 0;
+            len = 0;
+        }
     }
 }
 
@@ -59,7 +61,7 @@ void display() {
     moveBalls();
     drawTable();
     drawBalls();
-    if (state == WAIT) {
+    if (gameState == WAIT) {
         drawStrikeLine(len);
     }
     drawBackGround();

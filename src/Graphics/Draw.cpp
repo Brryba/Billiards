@@ -8,7 +8,7 @@
 #include "../Controls/Handlers.h"
 
 void drawCircle(float x, float y, float size) {
-    const int POINTS_NUM = 52;
+    const int POINTS_NUM = 100;
 
     glBegin(GL_TRIANGLE_FAN);
     glVertex2f(x, y);

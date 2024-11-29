@@ -5,5 +5,5 @@ enum States {
     MOVE
 };
 
-extern States state;
+extern States gameState;
 #endif

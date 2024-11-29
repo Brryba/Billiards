@@ -9,7 +9,7 @@ const float BALL_RADIUS = 12;
 const int MAX_SPEED = 10;
 const float MIN_LEN = 20;
 const float MAX_LEN = 300;
-const float ACCELERATION = 0.01;
+const float ACCELERATION = 0.008;
 
 const int WIDTH_START = 300;
 const int WIDTH_FINISH = 1700;
@@ -19,6 +19,7 @@ const int HEIGHT_FINISH = 1015;
 const int POCKET_RADIUS = 25;
 const int BORDER_LEN = 20;
 const int BROWN_BORDER_LEN = 50;
+const int BROWN_BORDER_RADIUS = BROWN_BORDER_LEN / 2;
 const int POCKETS_AMOUNT = 6;
 
 const float POCKETS_COORDS[6][2] = {
