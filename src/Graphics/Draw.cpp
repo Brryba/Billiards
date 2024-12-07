@@ -28,8 +28,10 @@ void drawBall(float x, float y) {
 }
 
 void drawBalls() {
-    glColor3f(1, 1, 1);
     for (int i = 0; i < ballsLen; i++) {
+        glColor3f(BALL_COLORS[balls[i].color][0],
+                  BALL_COLORS[balls[i].color][1],
+                  BALL_COLORS[balls[i].color][2]);
         drawBall(balls[i].coordX, balls[i].coordY);
     }
 }

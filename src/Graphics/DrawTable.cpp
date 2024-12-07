@@ -1,3 +1,4 @@
+#include <cmath>
 #include "GL/glut.h"
 #include "Draw.h"
 #include "../Main/Constants.h"
@@ -61,8 +62,31 @@ void drawPockets() {
     }
 }
 
+void drawLine() {
+    glColor3f(0.6, 1, 0.6);
+    glLineWidth(3);
+    glBegin(GL_LINES);
+    glVertex2f(WIDTH_START + LINE_OFFSET, HEIGHT_START);
+    glVertex2f(WIDTH_START + LINE_OFFSET, HEIGHT_FINISH);
+    glEnd();
+}
+
+void drawDZone() {
+    const int POINTS_AMOUNT = 100;
+    glBegin(GL_LINE_LOOP);
+    for (int i = 0; i <= POINTS_AMOUNT; i++) {
+        float theta = M_PI * i / POINTS_AMOUNT;
+        float dx = DZONE_RADIUS * cosf(M_PI / 2 + theta);
+        float dy = DZONE_RADIUS * sinf(M_PI / 2 + theta);
+        glVertex2f(dx + WIDTH_START + LINE_OFFSET, dy + HEIGHT_CENTER);
+    }
+    glEnd();
+}
+
 void drawTable() {
     drawCenter();
+    drawLine();
+    drawDZone();
     drawBorders();
     drawPockets();
 }

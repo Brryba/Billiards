@@ -17,8 +17,9 @@ void createBalls() {
     }
     balls[0].coordX = 1500;
     balls[0].coordY = 600;
-    balls[1].coordX = 1500;
-    balls[1].coordY = 900;
+    balls[0].color = CL_BLUE;
+    balls[1].coordX = 1650;
+    balls[1].coordY = 369;
     balls[2].coordX = 1500;
     balls[2].coordY = 924;
     balls[3].coordX = 1500;

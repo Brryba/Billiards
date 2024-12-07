@@ -16,7 +16,8 @@ add_executable(Billiards src/Main/main.cpp
         src/GamePlay/Collisions.h
         src/GamePlay/Collisions.cpp
         src/GamePlay/GameState.h
-        src/GamePlay/GameState.cpp)
+        src/GamePlay/GameState.cpp
+        src/GamePlay/BallConstants.h)
 
 target_link_libraries(Billiards ${OPENGL_LIBRARIES})
 target_link_libraries(Billiards -lopengl32 -g -lfreeglut)

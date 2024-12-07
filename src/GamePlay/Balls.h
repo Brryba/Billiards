@@ -4,6 +4,7 @@
 #include <cmath>
 #include <valarray>
 #include "../Main/Constants.h"
+#include "BallConstants.h"
 
 using namespace ::std;
 
