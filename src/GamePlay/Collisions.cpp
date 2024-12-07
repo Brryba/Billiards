@@ -13,9 +13,9 @@ bool checkPocketsCollisions(Ball *ball) {
     for (int i = 0; i < POCKETS_AMOUNT; i++) {
         float dx = ball->coordX - POCKETS_COORDS[i][0];
         float dy = ball->coordY - POCKETS_COORDS[i][1];
-        if (sqrt(dx * dx + dy * dy) < POCKET_RADIUS) {
-            ball->coordX = 100;
-            ball->coordY = 100;
+        if (sqrt(dx * dx + dy * dy) < POCKET_RADIUS && ball->isActive) {
+            ball->coordX = 0;
+            ball->coordY = 0;
             ball->setSpeed(0, 0);
             ball->isActive = false;
             fallenBalls.push_back(ball->color);
@@ -122,7 +122,7 @@ void collisionsCheck() {
     }
 
     for (int i = 0; i < ballsLen; i++) {
-        if (!checkPocketsCollisions(&balls[i])) {
+        if (balls[i].isActive && !checkPocketsCollisions(&balls[i])) {
             if (!checkBorders(&balls[i])) {
                 checkBallsCollisions(&balls[i]);
             }

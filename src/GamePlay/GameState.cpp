@@ -17,26 +17,34 @@ void swapActivePlayer() {
     activePlayer = activePlayer == player1 ? player2 : player1;
 }
 
+void putTheBallBack()
+
 void findNextTarget() {
-    if (firstTouched != activePlayer->neededColor) {
+    if (firstTouched == CL_NONE) {
         swapActivePlayer();
         activePlayer->points += 4;
+    } else if (firstTouched != activePlayer->neededColor) {
+        swapActivePlayer();
+        activePlayer->points += firstTouched;
         //////IF GAME ENDS CHECK ADD
         activePlayer->neededColor = CL_RED;
     } else if (fallenBalls.empty()) {
         swapActivePlayer();
     } else {
         bool isFoul = false;
+        int points = 0;
         for (auto & fallenBall : fallenBalls) {
             if (fallenBall != activePlayer->neededColor) {
                 swapActivePlayer();
-                //ACTUAL NUM APPEND
-                activePlayer->points += 5;
+                activePlayer->points += fallenBall;
                 isFoul = true;
+            } else {
+                points += activePlayer->neededColor;
             }
+            putTheBallBack(fallenBall);
         }
         if (!isFoul) {
-            activePlayer->points += 4;
+            activePlayer->points += points;
             activePlayer->neededColor = CL_COLOR;
         }
     }
