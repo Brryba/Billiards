@@ -10,15 +10,15 @@ const float WASTE_COEF = 0.8;
 std::vector<std::vector<Ball *>> collisioned;
 
 bool checkPocketsCollisions(Ball *ball) {
-    for (int i = 0; i < POCKETS_AMOUNT; i++) {
-        float dx = ball->coordX - POCKETS_COORDS[i][0];
-        float dy = ball->coordY - POCKETS_COORDS[i][1];
+    for (auto i : POCKETS_COORDS) {
+        float dx = ball->coordX - i[0];
+        float dy = ball->coordY - i[1];
         if (sqrt(dx * dx + dy * dy) < POCKET_RADIUS && ball->isActive) {
             ball->coordX = 0;
             ball->coordY = 0;
             ball->setSpeed(0, 0);
             ball->isActive = false;
-            fallenBalls.push_back(ball->color);
+            fallenBalls.push_back(ball);
             return true;
         }
     }
@@ -88,6 +88,7 @@ float countBallDistance(Ball *ball1, Ball *ball2) {
 }
 
 bool hasCollision(Ball *ball1, Ball *ball2) {
+    if (ball1 == ball2) return false;
     if (!ball1->isActive || !ball2->isActive) {
         return false;
     }

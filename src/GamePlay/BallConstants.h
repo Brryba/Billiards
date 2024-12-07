@@ -11,6 +11,7 @@ const int PINK_BALL = RED_AMOUNT + 5;
 const int BLACK_BALL = RED_AMOUNT + 6;
 
 enum Color {
+    CL_COLOR = -1,
     CL_WHITE = 0,
     CL_RED,
     CL_YELLOW,
@@ -19,7 +20,6 @@ enum Color {
     CL_BLUE,
     CL_PINK,
     CL_BLACK,
-    CL_COLOR,
     CL_NONE
 };
 
