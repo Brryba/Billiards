@@ -26,6 +26,11 @@ struct Ball {
         this->speedY = y;
         this->angle = y == 0 ? 0: atan(abs(x) / abs(y));
     }
+
+    void setStartCoord(int x, int y) {
+        this->coordX = x;
+        this->coordY = y;
+    }
 };
 
 extern Ball* balls;

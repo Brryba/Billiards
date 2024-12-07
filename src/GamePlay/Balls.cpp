@@ -9,22 +9,21 @@ Ball *balls = nullptr;
 Ball* whiteBall = nullptr;
 
 void createBalls() {
-    ballsLen = 4;
-    balls = new Ball[ballsLen];
-    for (int i = 0; i < ballsLen; i++) {
-        //balls[i].coordX = 400;
-        //balls[i].coordY = 500;
+    ballsLen = BALL_AMOUNT;
+    balls = new Ball[BALL_AMOUNT];
+    for (int i = 0; i < BALL_AMOUNT; i++) {
+        balls[i].setStartCoord(BALL_POS[i][0], BALL_POS[i][1]);
     }
-    balls[0].coordX = 1500;
-    balls[0].coordY = 600;
-    balls[0].color = CL_BLUE;
-    balls[1].coordX = 1650;
-    balls[1].coordY = 369;
-    balls[2].coordX = 1500;
-    balls[2].coordY = 924;
-    balls[3].coordX = 1500;
-    balls[3].coordY = 948;
-    //balls[1].setSpeed(1.3, 1.3);
+    balls[0].color = CL_WHITE;
+    for (int i = 1; i <= RED_AMOUNT; i++) {
+        balls[i].color = CL_RED;
+    }
+    balls[YELLOW_BALL].color = CL_YELLOW;
+    balls[GREEN_BALL].color = CL_GREEN;
+    balls[BROWN_BALL].color = CL_BROWN;
+    balls[BLUE_BALL].color = CL_BLUE;
+    balls[PINK_BALL].color = CL_PINK;
+    balls[BLACK_BALL].color = CL_BLACK;
     whiteBall = &balls[0];
 }
 
