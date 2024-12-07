@@ -18,7 +18,9 @@ enum Color {
     CL_BROWN,
     CL_BLUE,
     CL_PINK,
-    CL_BLACK
+    CL_BLACK,
+    CL_COLOR,
+    CL_NONE
 };
 
 const float BALL_COLORS[CL_BLACK + 1][3] = {{1,   1,     1},

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Balls.h"
 #include "Collisions.h"
 #include "GameState.h"
@@ -13,6 +14,7 @@ void createBalls() {
     balls = new Ball[BALL_AMOUNT];
     for (int i = 0; i < BALL_AMOUNT; i++) {
         balls[i].setStartCoord(BALL_POS[i][0], BALL_POS[i][1]);
+        balls[i].isActive = true;
     }
     balls[0].color = CL_WHITE;
     for (int i = 1; i <= RED_AMOUNT; i++) {
@@ -34,7 +36,7 @@ float countSpeed(float speed, float acceleration) {
 
 void moveBalls() {
     collisionsCheck();
-    gameState = WAIT;
+    gameState = gameState == MOVE ? CALC : WAIT;
     for (int i = 0; i < ballsLen; i++) {
         balls[i].coordX = balls[i].coordX + balls[i].speedX;
         balls[i].coordY = balls[i].coordY + balls[i].speedY;
@@ -42,7 +44,7 @@ void moveBalls() {
                                      sin(balls[i].angle) * ACCELERATION);
         balls[i].speedY = countSpeed(balls[i].speedY,
                                      cos(balls[i].angle) * ACCELERATION);
-        if (balls[i].speedX != 0 || balls[i].speedY != 0) {
+        if (balls[i].speedX != 0 || balls[i].speedY != 0 && balls[i].isActive) {
             gameState = MOVE;
         }
     }

@@ -63,6 +63,8 @@ void display() {
     drawBalls();
     if (gameState == WAIT) {
         drawStrikeLine(len);
+    } else if (gameState == CALC) {
+        countNext();
     }
     drawBackGround();
     glutSwapBuffers();

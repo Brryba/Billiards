@@ -29,10 +29,12 @@ void drawBall(float x, float y) {
 
 void drawBalls() {
     for (int i = 0; i < BALL_AMOUNT; i++) {
-        glColor3f(BALL_COLORS[balls[i].color][0],
-                  BALL_COLORS[balls[i].color][1],
-                  BALL_COLORS[balls[i].color][2]);
-        drawBall(balls[i].coordX, balls[i].coordY);
+        if (balls[i].isActive) {
+            glColor3f(BALL_COLORS[balls[i].color][0],
+                      BALL_COLORS[balls[i].color][1],
+                      BALL_COLORS[balls[i].color][2]);
+            drawBall(balls[i].coordX, balls[i].coordY);
+        }
     }
 }
 

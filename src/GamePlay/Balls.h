@@ -15,6 +15,7 @@ struct Ball {
     float speedX;
     float speedY;
     float angle;
+    bool isActive;
 
     Ball() {
         this->speedY = 0;
