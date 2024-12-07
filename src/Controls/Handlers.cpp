@@ -67,5 +67,6 @@ void display() {
         countNext();
     }
     drawBackGround();
+    printScores();
     glutSwapBuffers();
 }

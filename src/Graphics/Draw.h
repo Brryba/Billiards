@@ -6,5 +6,6 @@ void drawBalls();
 void drawStrikeLine(int len);
 void drawSquare(int width_start, int width_finish, int height_start, int height_finish);
 void drawBackGround();
+void printScores();
 
 #endif

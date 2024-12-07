@@ -1,6 +1,7 @@
 #include <vector>
 #include "../Main/Constants.h"
 #include "BallConstants.h"
+#include "Player.h"
 
 #ifndef BILLIARDS_GAMESTATE_H
 #define BILLIARDS_GAMESTATE_H
@@ -15,6 +16,13 @@ extern States gameState;
 extern Color firstTouched;
 
 extern std::vector<Color> fallenBalls;
+
+
+extern Player* player1;
+
+extern Player* player2;
+
+extern Player* activePlayer;
 
 void countNext();
 

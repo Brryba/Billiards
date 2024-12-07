@@ -1,11 +1,13 @@
 #include <GL/gl.h>
 #include <cmath>
 #include <iostream>
+#include <cstring>
 #include "Draw.h"
 #include "../Main/Constants.h"
 #include "../GamePlay/Balls.h"
 #include "GL/glut.h"
 #include "../Controls/Handlers.h"
+#include "../GamePlay/GameState.h"
 
 void drawCircle(float x, float y, float size) {
     const int POINTS_NUM = 100;
@@ -87,4 +89,46 @@ void drawBackGround() {
                0, HEIGHT_START - BROWN_BORDER_LEN);
     drawSquare(WIDTH_START - BROWN_BORDER_LEN, WIDTH_FINISH + BROWN_BORDER_LEN,
                HEIGHT_FINISH + BROWN_BORDER_LEN, APP_HEIGHT);
+}
+
+void printScores() {
+    glColor3f(0.2, 0.2, 1);
+    glRasterPos2f(250, 150);
+    std::string str = "PLAYER 1: " + std::to_string(player1->points);
+    for (char c : str) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+    }
+
+
+    glColor3f(1, 0.2, 0.2);
+    glRasterPos2f(1500, 150);
+    str = "PLAYER 2: " + std::to_string(player2->points);
+    for (char c : str) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+    }
+
+    switch (activePlayer->neededColor) {
+        case CL_RED: str = "RED"; break;
+        case CL_YELLOW: str = "YELLOW"; break;
+        case CL_GREEN: str = "GREEN"; break;
+        case CL_BROWN: str = "BROWN"; break;
+        case CL_BLUE: str = "BLUE"; break;
+        case CL_PINK: str = "PINK"; break;
+        case CL_BLACK: str = "BLACK"; break;
+        case CL_COLOR: str = "COLOR (NOT RED)"; break;
+    }
+
+
+    if (activePlayer == player1) {
+        glColor3f(0.2, 0.2, 1);
+    } else {
+        glColor3f(1, 0.2, 0.2);
+    }
+    glRasterPos2f(825, 150);
+    std::string playerStr = (activePlayer == player1 ? "PLAYER 1: SCORE " : "PLAYER 2: SCORE ") + str;
+    for (char c : playerStr) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+    }
+
+    glFlush();
 }
