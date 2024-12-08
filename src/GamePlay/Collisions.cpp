@@ -1,9 +1,7 @@
-#include <iostream>
 #include <vector>
 #include "Balls.h"
 #include "../Main/Constants.h"
 #include "GameState.h"
-#include "vector"
 
 const float WASTE_COEF = 0.8;
 

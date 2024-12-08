@@ -1,12 +1,6 @@
-#include <cmath>
 #include <GL/gl.h>
-#include <GL/glu.h>
 #include <GL/glut.h>
-#include <GL/freeglut.h>
-#include <iostream>
-#include "../Graphics/Draw.h"
 #include "Constants.h"
-#include "../GamePlay/BallConstants.h"
 #include "../GamePlay/Balls.h"
 #include "../Controls/Handlers.h"
 

@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Balls.h"
 #include "Collisions.h"
 #include "GameState.h"

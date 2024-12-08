@@ -1,4 +1,3 @@
-#include <iostream>
 #include "GL/glut.h"
 #include "../Graphics/Draw.h"
 #include "../Main/Constants.h"
@@ -9,7 +8,6 @@
 
 int mouseX = 0, mouseY = 0;
 int activeMouseStartX = 0, activeMouseStartY = 0;
-int activeMouseX = 0, activeMouseY = 0;
 float len = 0;
 
 float toAppWidth(int x) {
