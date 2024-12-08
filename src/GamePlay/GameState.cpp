@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Balls.h"
 #include "Collisions.h"
+#include <algorithm>
 
 States gameState = START;
 
@@ -14,6 +15,8 @@ Player *player1 = new Player;
 Player *player2 = new Player;
 
 Player *activePlayer = player1;
+
+const int MIN_FINE = 4;
 
 void swapActivePlayer() {
     activePlayer = activePlayer == player1 ? player2 : player1;
@@ -121,12 +124,12 @@ void checkFallenBals() {
             if (fallenBall->color == CL_WHITE) {
                 if (firstTouched != CL_NONE) {
                     swapActivePlayer();
-                    activePlayer->points += 4;
+                    activePlayer->points += MIN_FINE;
                 }
                 gameState = FOUL;
             } else {
                 swapActivePlayer();
-                activePlayer->points += fallenBall->color;
+                activePlayer->points += max((int)fallenBall->color, MIN_FINE);
             }
             changeNeededColor(false);
             isFoul = true;
@@ -151,13 +154,13 @@ void findNextTarget() {
     }
     if (firstTouched == CL_NONE) {
         swapActivePlayer();
-        activePlayer->points += 4;
+        activePlayer->points += MIN_FINE;
         changeNeededColor(false);
     } else if (fallenBalls.empty()) {
         Color temp = activePlayer->neededColor;
         swapActivePlayer();
         if (isWrongBall(temp, firstTouched)) {
-            activePlayer->points += firstTouched;
+            activePlayer->points += max((int)firstTouched, MIN_FINE);
         }
         changeNeededColor(false);
     }

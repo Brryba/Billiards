@@ -29,6 +29,7 @@ void initializeDisplay(int args, char **argv) {
     glutPassiveMotionFunc(mousePassiveMove);
     glutMouseFunc(mouseActivePress);
     glutMotionFunc(mouseActiveMove);
+    glutSpecialFunc(specialKeys);
     glutDisplayFunc(display);
     glutTimerFunc(0, timer, 0);
 

@@ -20,6 +20,16 @@ float toAppHeight(int y) {
     return (float) y * APP_HEIGHT / WINDOW_HEIGHT;
 }
 
+void specialKeys(int key, int x, int y) {
+    if (key == GLUT_KEY_F5) {
+        createBalls();
+        player1->reset();
+        player2->reset();
+        activePlayer = player1;
+        gameState = START;
+    }
+}
+
 void mousePassiveMove(int x, int y) {
     mouseX = toAppWidth(x);
     mouseY = toAppHeight(y);
