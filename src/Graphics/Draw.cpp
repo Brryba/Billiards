@@ -91,22 +91,22 @@ void drawBackGround() {
                HEIGHT_FINISH + BROWN_BORDER_LEN, APP_HEIGHT);
 }
 
-void printScores() {
-    glColor3f(0.2, 0.2, 1);
-    glRasterPos2f(250, 150);
-    std::string str = "PLAYER 1: " + std::to_string(player1->points);
+void setPrintColor() {
+    if (activePlayer == player1) {
+        glColor3f(0.2, 0.2, 1);
+    } else {
+        glColor3f(1, 0.5, 0.0);
+    }
+}
+
+void printString(string str) {
     for (char c : str) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
     }
+}
 
-
-    glColor3f(1, 0.2, 0.2);
-    glRasterPos2f(1500, 150);
-    str = "PLAYER 2: " + std::to_string(player2->points);
-    for (char c : str) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
-    }
-
+void printNeededBall() {
+    string str;
     switch (activePlayer->neededColor) {
         case CL_RED: str = "RED"; break;
         case CL_YELLOW: str = "YELLOW"; break;
@@ -118,17 +118,59 @@ void printScores() {
         case CL_COLOR: str = "COLOR (NOT RED)"; break;
     }
 
-
-    if (activePlayer == player1) {
-        glColor3f(0.2, 0.2, 1);
+    setPrintColor();
+    if (activePlayer->neededColor == CL_COLOR) {
+        glRasterPos2f(750, 100);
     } else {
-        glColor3f(1, 0.2, 0.2);
+        glRasterPos2f(850, 100);
     }
-    glRasterPos2f(825, 150);
-    std::string playerStr = (activePlayer == player1 ? "PLAYER 1: SCORE " : "PLAYER 2: SCORE ") + str;
-    for (char c : playerStr) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+    std::string playerStr = (activePlayer == player1 ? "PLAYER 1: POT " : "PLAYER 2: POT ") + str;
+    printString(playerStr);
+}
+
+void printWinner() {
+    string str = "THE WINNER IS ";
+    setPrintColor();
+    glRasterPos2f(825, 200);
+    if (activePlayer == player1) {
+        printString(str + "PLAYER 1!");
+    } else if (activePlayer == player2) {
+        printString(str + "PLAYER 2!");
+    } else {
+        glRasterPos2f(960, 200);
+        printString("DRAW!");
     }
+}
+
+void printTip() {
+    setPrintColor();
+
+    string str = "";
+    if (gameState == START) {
+        str = "Right-click in D-Zone to place the cue ball";
+        glRasterPos2f(730, 200);
+    } else if (gameState == FOUL) {
+        str = "Right-click anywhere on table to place the cue ball";
+        glRasterPos2f(680, 200);
+    } if (gameState == VICTORY) {
+        printWinner();
+    }
+    printString(str);
+}
+
+void printScores() {
+    glColor3f(0.2, 0.2, 1);
+    glRasterPos2f(250, 100);
+    std::string str = "PLAYER 1: " + std::to_string(player1->points);
+    printString(str);
+
+
+    glColor3f(1, 0.5, 0.0);
+    glRasterPos2f(1570, 100);
+    str = "PLAYER 2: " + std::to_string(player2->points);
+    printString(str);
+    printTip();
+    printNeededBall();
 
     glFlush();
 }

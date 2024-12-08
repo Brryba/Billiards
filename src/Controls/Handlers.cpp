@@ -5,6 +5,7 @@
 #include "../GamePlay/Balls.h"
 #include "../Graphics/DrawTable.h"
 #include "../GamePlay/GameState.h"
+#include "../GamePlay/Collisions.h"
 
 int mouseX = 0, mouseY = 0;
 int activeMouseStartX = 0, activeMouseStartY = 0;
@@ -26,7 +27,19 @@ void mousePassiveMove(int x, int y) {
 
 void mouseActivePress(int button, int state, int x, int y) {
     if ((gameState == START || gameState == FOUL) && button == GLUT_RIGHT_BUTTON) {
-        whiteBall->setStartCoord(toAppWidth(x), toAppHeight(y));
+        x = toAppWidth(x);
+        y = toAppHeight(y);
+        if (!hasCueBallCollisions(x, y)) {
+            if (gameState == START) {
+                if ((x < WIDTH_START + LINE_OFFSET) &&
+                    countPointDistance(WIDTH_START + LINE_OFFSET, HEIGHT_CENTER,
+                                       x, y) < DZONE_RADIUS) {
+                    whiteBall->setStartCoord(x, y);
+                }
+            } else {
+                whiteBall->setStartCoord(x, y);
+            }
+        }
     }
 
     if (gameState == WAIT || gameState == START || gameState == FOUL) {

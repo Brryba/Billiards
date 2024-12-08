@@ -81,10 +81,14 @@ void implementCollision(Ball *ball1, Ball *ball2) {
 
 }
 
-float countBallDistance(Ball *ball1, Ball *ball2) {
-    float dx = ball1->coordX - ball2->coordX;
-    float dy = ball1->coordY - ball2->coordY;
+float countPointDistance(float x1, float y1, float x2, float y2) {
+    float dx = x1 - x2;
+    float dy = y1 - y2;
     return sqrt(dx * dx + dy * dy);
+}
+
+float countBallDistance(Ball *ball1, Ball *ball2) {
+    return countPointDistance(ball1->coordX, ball1->coordY, ball2->coordX, ball2->coordY);
 }
 
 bool hasCollision(Ball *ball1, Ball *ball2) {
@@ -129,4 +133,24 @@ void collisionsCheck() {
             }
         }
     }
+}
+
+bool hasCueBallCollisions(int x, int y) {
+    for (int i = 1; i < BALL_AMOUNT; i++) {
+        if (countPointDistance(balls[i].coordX, balls[i].coordY, x, y) < 2 * BALL_RADIUS) {
+            return true;
+        }
+    }
+    if (x < WIDTH_START + BORDER_LEN || x > WIDTH_FINISH - BORDER_LEN ||
+        y > HEIGHT_FINISH - BORDER_LEN || y < HEIGHT_START + BORDER_LEN) {
+        return true;
+    }
+    for (auto i : POCKETS_COORDS) {
+        float dx = x - i[0];
+        float dy = y - i[1];
+        if (sqrt(dx * dx + dy * dy) < POCKET_RADIUS) {
+            return true;
+        }
+    }
+    return false;
 }

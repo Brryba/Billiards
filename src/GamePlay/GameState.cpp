@@ -93,6 +93,25 @@ bool isWrongBall(Color playerColor, Color actualColor) {
     return playerColor != actualColor;
 }
 
+void findOutWinner() {
+    if (fallenBalls.size() > 1 || firstTouched == CL_NONE) {
+        swapActivePlayer();
+        gameState = VICTORY;
+        return;
+    }
+    if (fallenBalls.size() == 1) {
+        if (fallenBalls.at(0)->color == CL_BLACK) {
+            gameState = VICTORY;
+            activePlayer->points += CL_BLACK;
+            activePlayer = player1->points > player2->points ? player1
+                    : player1->points < player2->points ? player2 : nullptr;
+        }
+    } else {
+        swapActivePlayer();
+        changeNeededColor(false);
+    }
+}
+
 void checkFallenBals() {
     bool isFoul = false;
     int points = 0;
@@ -127,6 +146,9 @@ void checkFallenBals() {
 }
 
 void findNextTarget() {
+    if (activePlayer->neededColor == CL_BLACK) {
+        return findOutWinner();
+    }
     if (firstTouched == CL_NONE) {
         swapActivePlayer();
         activePlayer->points += 4;
@@ -147,7 +169,7 @@ void findNextTarget() {
 void clearState() {
     firstTouched = CL_NONE;
     fallenBalls.clear();
-    gameState = gameState == FOUL ? FOUL : WAIT;
+    gameState = gameState == CALC ? WAIT : gameState;
 }
 
 void countNext() {

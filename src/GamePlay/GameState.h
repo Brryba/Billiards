@@ -11,7 +11,8 @@ enum States {
     CALC,
     MOVE,
     START,
-    FOUL
+    FOUL,
+    VICTORY
 };
 
 extern States gameState;
