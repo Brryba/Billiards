@@ -44,12 +44,11 @@ void setLineColor(int len) {
     if (len < MIN_LEN)
         glColor3f(1, 1, 1);
     else {
-        glColor3f(len / MAX_LEN, 1 - len / MAX_LEN, 0);
+        glColor3f(1, 1 - len / MAX_LEN, 0);
     }
 }
 
 void drawStrikeLine(int len) {
-    //ЕСЛИ ЦЕЛИТСЯ СДЕЛАТЬ ЧТОБ НЕ РИСОВАЛО ПРИ МИНИМУМЕ
     setLineColor(len);
 
     glLineWidth(1.5);

@@ -19,29 +19,12 @@ void createBalls() {
     balls[0].color = CL_WHITE;
     for (int i = 1; i <= RED_AMOUNT; i++) {
         balls[i].color = CL_RED;
-        //////
-        balls[i].isActive = false;
-        balls[i].setStartCoord(0, 0);
-        ///////
     }
     balls[YELLOW_BALL].color = CL_YELLOW;
-
-    balls[YELLOW_BALL].isActive = false;
-    balls[YELLOW_BALL].setStartCoord(0, 0);
     balls[GREEN_BALL].color = CL_GREEN;
-
-    balls[GREEN_BALL].isActive = false;
-    balls[GREEN_BALL].setStartCoord(0, 0);
     balls[BROWN_BALL].color = CL_BROWN;
-
-    balls[BROWN_BALL].isActive = false;
-    balls[BROWN_BALL].setStartCoord(0, 0);
     balls[BLUE_BALL].color = CL_BLUE;
-
-    balls[BLUE_BALL].isActive = false;
-    balls[BLUE_BALL].setStartCoord(0, 0);
     balls[PINK_BALL].color = CL_PINK;
-
     balls[BLACK_BALL].color = CL_BLACK;
     whiteBall = &balls[0];
 }
