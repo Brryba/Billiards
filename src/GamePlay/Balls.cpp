@@ -36,7 +36,7 @@ float countSpeed(float speed, float acceleration) {
 
 void moveBalls() {
     collisionsCheck();
-    gameState = gameState == MOVE ? CALC : WAIT;
+    gameState = gameState == MOVE ? CALC : gameState;
     for (int i = 0; i < ballsLen; i++) {
         balls[i].coordX = balls[i].coordX + balls[i].speedX;
         balls[i].coordY = balls[i].coordY + balls[i].speedY;

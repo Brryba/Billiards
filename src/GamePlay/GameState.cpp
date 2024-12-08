@@ -3,7 +3,7 @@
 #include "Balls.h"
 #include "Collisions.h"
 
-States gameState = WAIT;
+States gameState = START;
 
 Color firstTouched = CL_NONE;
 
@@ -21,7 +21,10 @@ void swapActivePlayer() {
 
 void putTheBallBack(Ball *ball) {
     if (ball->color == CL_WHITE) {
-
+        ball->setStartCoord(BALL_POS[0][0], BALL_POS[0][1]);
+        ball->setSpeed(0, 0);
+        gameState = FOUL;
+        ball->isActive = true;
     } else if (ball->color != CL_RED && ball->color > activePlayer->neededColor) {
         ball->setSpeed(0, 0);
         ball->isActive = true;
@@ -90,6 +93,39 @@ bool isWrongBall(Color playerColor, Color actualColor) {
     return playerColor != actualColor;
 }
 
+void checkFallenBals() {
+    bool isFoul = false;
+    int points = 0;
+    for (auto &fallenBall: fallenBalls) {
+        putTheBallBack(fallenBall);
+        if (!isFoul && isWrongBall(activePlayer->neededColor, fallenBall->color)) {
+            if (fallenBall->color == CL_WHITE) {
+                if (firstTouched != CL_NONE) {
+                    swapActivePlayer();
+                    activePlayer->points += 4;
+                }
+                gameState = FOUL;
+            } else {
+                swapActivePlayer();
+                activePlayer->points += fallenBall->color;
+            }
+            changeNeededColor(false);
+            isFoul = true;
+        } else {
+            points += fallenBall->color;
+        }
+    }
+    if (!isFoul) {
+        if (isWrongBall(activePlayer->neededColor, firstTouched)) {
+            swapActivePlayer();
+            changeNeededColor(false);
+        } else {
+            changeNeededColor(true);
+        }
+        activePlayer->points += points;
+    }
+}
+
 void findNextTarget() {
     if (firstTouched == CL_NONE) {
         swapActivePlayer();
@@ -104,35 +140,14 @@ void findNextTarget() {
         changeNeededColor(false);
     }
     if (!fallenBalls.empty()) {
-        bool isFoul = false;
-        int points = 0;
-        for (auto &fallenBall: fallenBalls) {
-            putTheBallBack(fallenBall);
-            if (!isFoul && isWrongBall(activePlayer->neededColor, fallenBall->color)) {
-                swapActivePlayer();
-                activePlayer->points += fallenBall->color;
-                changeNeededColor(false);
-                isFoul = true;
-            } else {
-                points += fallenBall->color;
-            }
-        }
-        if (!isFoul) {
-            if (isWrongBall(activePlayer->neededColor, firstTouched)) {
-                swapActivePlayer();
-                changeNeededColor(false);
-            } else {
-                changeNeededColor(true);
-            }
-            activePlayer->points += points;
-        }
+        checkFallenBals();
     }
 }
 
 void clearState() {
     firstTouched = CL_NONE;
     fallenBalls.clear();
-    gameState = WAIT;
+    gameState = gameState == FOUL ? FOUL : WAIT;
 }
 
 void countNext() {

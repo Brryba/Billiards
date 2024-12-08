@@ -25,7 +25,11 @@ void mousePassiveMove(int x, int y) {
 }
 
 void mouseActivePress(int button, int state, int x, int y) {
-    if (gameState == WAIT) {
+    if ((gameState == START || gameState == FOUL) && button == GLUT_RIGHT_BUTTON) {
+        whiteBall->setStartCoord(toAppWidth(x), toAppHeight(y));
+    }
+
+    if (gameState == WAIT || gameState == START || gameState == FOUL) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
             activeMouseStartX = x;
             activeMouseStartY = y;
@@ -61,7 +65,7 @@ void display() {
     moveBalls();
     drawTable();
     drawBalls();
-    if (gameState == WAIT) {
+    if (gameState == WAIT || gameState == START || gameState == FOUL) {
         drawStrikeLine(len);
     } else if (gameState == CALC) {
         countNext();

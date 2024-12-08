@@ -9,7 +9,9 @@
 enum States {
     WAIT,
     CALC,
-    MOVE
+    MOVE,
+    START,
+    FOUL
 };
 
 extern States gameState;
